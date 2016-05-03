@@ -1,0 +1,14 @@
+<%= link_to "Home", root_path %>
+<% if user_signed_in? %>
+  <%= link_to "#{current_user.email}", user_path(current_user) %>
+<% end %>
+<%= link_to "Books", "#" %>
+<%= link_to "Genres", "#" %>
+<%= link_to "Authors", "#" %>
+<% if !user_signed_in? %>
+  <%= link_to "Sign In", new_user_session_path %>
+  <%= link_to "Sign Up", new_user_registration_path %>
+<% else %>
+  <%= link_to "Cart", "#" %>
+  <%= link_to "Sign Out", destroy_user_session_path, method: 'DELETE' %>
+<% end %>
