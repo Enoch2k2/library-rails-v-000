@@ -9,6 +9,8 @@
   <%= link_to "Sign In", new_user_session_path %>
   <%= link_to "Sign Up", new_user_registration_path %>
 <% else %>
-  <%= link_to "Cart", "#" %>
+  <% if current_user.current_cart %>
+  <%= link_to "Cart", cart_path(current_user.current_cart) %>
+  <% end %>
   <%= link_to "Sign Out", destroy_user_session_path, method: 'DELETE' %>
 <% end %>

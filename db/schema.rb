@@ -11,13 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503110416) do
+ActiveRecord::Schema.define(version: 20160503234952) do
+
+  create_table "authors", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "author_id"
+    t.integer  "genre_id"
+    t.decimal  "price"
+    t.integer  "inventory",  default: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "books", ["author_id"], name: "index_books_on_author_id"
+  add_index "books", ["genre_id"], name: "index_books_on_genre_id"
+
+  create_table "cart_books", force: :cascade do |t|
+    t.integer  "cart_id"
+    t.integer  "book_id"
+    t.integer  "quantity",   default: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "cart_books", ["book_id"], name: "index_cart_books_on_book_id"
+  add_index "cart_books", ["cart_id"], name: "index_cart_books_on_cart_id"
 
   create_table "carts", force: :cascade do |t|
     t.integer "user_id"
+    t.string  "status",  default: "not submitted"
   end
 
   add_index "carts", ["user_id"], name: "index_carts_on_user_id"
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
