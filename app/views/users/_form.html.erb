@@ -1,0 +1,6 @@
+<%= form_for @user do |f| %>
+  <%= f.label :admin? %>
+  <%= f.check_box :admin %>
+  <br><br>
+  <%= f.submit "Update User" %>
+<% end %>

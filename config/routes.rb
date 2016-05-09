@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
-  get 'users/show'
+  resources :admin, only: [:show] do
+    resources :users, only: [:index, :edit, :update]
+  end
 
+  resources :genres
+  resources :authors
+  post 'carts/:id/checkout', to: 'carts#checkout', as: 'checkout'
   get 'site/home'
-
-  devise_for :users
-  resources :users, only: :show
   root 'site#home'
+
+  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  resources :users, only: [:show, :update]
+  resources :cart_books
   resources :carts, only: :show
+  resources :books
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

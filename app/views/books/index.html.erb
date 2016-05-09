@@ -1,0 +1,7 @@
+<h1>List of Books</h1>
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+    <%= link_to "New Book", new_book_path %>
+  <% end %>
+<% end %>
+<%= render 'list' %>

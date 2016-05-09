@@ -1,1 +1,12 @@
 <h1><%= current_user.email %>'s Cart</h1>
+
+
+<% @cart.cart_books.each do |cart_book| %>
+  <p><%= link_to cart_book.book.title, book_path(cart_book.book) %> | <%= number_to_currency(cart_book.book.price.to_f/100) %> | Quantity: <%= cart_book.quantity %> | <%= link_to "Remove Book", cart_book_path(cart_book), method: 'DELETE' %></p>
+<% end %>
+<br>
+<p>-----------------</p>
+<label>Total: </label>
+<%= number_to_currency(@cart.total) %>
+<br>
+<%= button_to "Checkout", checkout_path %>

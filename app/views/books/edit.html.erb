@@ -1,0 +1,32 @@
+<h1>Edit <%= @book.title %></h1>
+<%= form_for @book do |f| %>
+  <%= f.label "Title: " %> <%= f.text_field :title %><br><br>
+
+  <%= f.label "Price(don't use decimal, but include the change): " %> <%= f.text_field :price %><br><br>
+
+  <%= f.label "Select Existing Author: " %>
+  <%= f.collection_select :author, Author.all, :id, :name, include_blank: true %>
+  <br>
+
+  <p>Or</p>
+
+  <%= f.fields_for :author_attribute, @book.author do |author_field| %>
+    <%= author_field.label "New Author Name: " %>
+    <%= author_field.text_field :name %>
+  <% end %>
+  <br><br>
+
+  <%= f.label "Select Existing Genre: " %>
+  <%= f.collection_select :genre, Genre.all, :id, :name, include_blank: true %>
+  <br>
+
+  <p>Or</p>  
+  <%= f.fields_for :genre_attribute, @book.genre do |genre_field| %>
+    <%= genre_field.label "Genre Name: " %>
+    <%= genre_field.text_field :name %>
+  <% end %>
+  <br><br>
+  <%= f.submit "Update Book" %>
+<% end %>
+<br>
+<%= link_to "Delete Book", book_path(@book), method: 'DELETE' %>
