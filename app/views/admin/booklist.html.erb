@@ -1,0 +1,27 @@
+<h1>Book List</h1>
+<table border="1" style="width:100%">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Genre</th>
+      <th>Price</th>
+      <th>Inventory</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Book.order(title: :asc).each do |book| %>
+      <tr>
+        <td><%= link_to book.title, book_path(book) %></td>
+        <td><%= link_to book.author.name, author_path(book.author) %></td>
+        <td><%= link_to book.genre.name, genre_path(book.genre) %></td>
+        <td><%= number_to_currency(book.price.to_f/100) %></td>
+        <td><%= book.inventory %></td>
+        <td><%= link_to "Edit", edit_book_path(book) %></td>
+        <td><%= link_to "Delete", book_path(book), method: 'DELETE' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -12,11 +12,14 @@ module ApplicationHelper
           list_link = link_to list_item.title, book_path(list_item)
           list_edit_link = link_to "Edit #{list_item.title}", edit_book_path(list_item)
           concat content_tag(:li, list_link)
-          concat content_tag(:li, list_edit_link)
+          if user_signed_in?
+            if current_user.admin?
+              concat content_tag(:li, list_edit_link)
+            end
+          end
         end
       end
     end
   end
-
 
 end

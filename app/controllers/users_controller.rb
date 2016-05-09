@@ -1,35 +1,23 @@
 class UsersController < ApplicationController
   def index
-    if current_user.admin?
-      @users = User.all
-    else
-      flash[:alert] = "Access Denied."
-      redirect_to root_path
-    end
+    admin_only
+    @users = User.all
   end
 
   def show
   end
 
   def edit
-    if current_user.admin?
-      @user = User.find(params[:id])
-    else
-      flash[:alert] = "Access Denied."
-      redirect_to root_path
-    end
+    admin_only
+    @user = User.find(params[:id])
   end
 
   def update
-    if current_user.admin?
-      @user = User.find(params[:id])
-      @user.update(user_params)
-      flash[:notice] = "Successfully Updated #{@user.email}."
-      redirect_to admin_users_path(current_user)
-    else
-      flash[:alert] = "Access Denied."
-      redirect_to root_path
-    end
+    admin_only
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    flash[:notice] = "Successfully Updated #{@user.email}."
+    redirect_to admin_users_path(current_user)
   end
 
   def user_params

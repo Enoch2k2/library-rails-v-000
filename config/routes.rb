@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :admin, only: [:show] do
     resources :users, only: [:index, :edit, :update]
   end
-
+  get 'admin/:id/booklist', to: 'admin#booklist', as: 'admin_booklist'
   resources :genres
   resources :authors
   post 'carts/:id/checkout', to: 'carts#checkout', as: 'checkout'
