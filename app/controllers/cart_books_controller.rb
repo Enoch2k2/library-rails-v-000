@@ -6,10 +6,9 @@ class CartBooksController < ApplicationController
     current_user.current_cart.save
     current_user.save
     @book = Book.find(params[:book_id])
-    flash.now[:notice] = "#{@book.title} added to cart."
     respond_to do |format|
       format.html {render html: '/'}
-      format.json {render json: @book }
+      format.json {render json: current_user }
     end
   end
 

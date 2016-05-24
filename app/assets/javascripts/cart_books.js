@@ -3,7 +3,18 @@ var addToCart = function(){
     e.preventDefault();
     var bookId = $(this).attr('data-bookId')
     $.post('/cart_books', {"book_id": bookId})
+    .done(function(data){
+      alert(data);
+    });
   });
+}
+
+function findCart(){
+
+}
+
+function hideCart(){
+
 }
 
 $(document).ready(function(){
