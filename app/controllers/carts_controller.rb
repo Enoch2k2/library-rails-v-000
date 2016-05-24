@@ -2,6 +2,10 @@ class CartsController < ApplicationController
 
   def show
     @cart = current_user.current_cart
+    respond_to do |format|
+      format.html
+      format.json {render json: @cart, adapter: :json }
+    end
   end
 
   def checkout

@@ -1,4 +1,4 @@
 class CurrentCartSerializer < ActiveModel::Serializer
-  attributes :id,
+  attributes :id, :cart_books
 
 end

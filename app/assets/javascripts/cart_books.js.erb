@@ -1,0 +1,28 @@
+var addToCart = function(){
+  $('.addCart').on('click', function(e){
+    e.preventDefault();
+    var bookId = $(this).attr('data-bookId')
+    $.ajax({
+      type: "POST",
+      data: {"book_id": bookId},
+      url: "/cart_books",
+      dataType: "json"
+    }).done(function(data) {
+      debugger;
+      // Do something with the result :)
+    });
+  });
+}
+
+function findCart(){
+
+}
+
+function hideCart(){
+
+}
+
+$(document).ready(function(){
+  addToCart();
+});
+// I want to add a removeCart Function

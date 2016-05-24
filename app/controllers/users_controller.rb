@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def index
-<<<<<<< HEAD
     if current_user.admin?
       @users = User.all
       respond_to do |format|
@@ -11,10 +10,8 @@ class UsersController < ApplicationController
       flash[:alert] = "Access Denied."
       redirect_to root_path
     end
-=======
     admin_only
     @users = User.all
->>>>>>> 904dc45ce98123f3bf95ae1263af318541751e31
   end
 
   def show

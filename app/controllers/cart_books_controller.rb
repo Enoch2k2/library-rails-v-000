@@ -8,7 +8,7 @@ class CartBooksController < ApplicationController
     @book = Book.find(params[:book_id])
     respond_to do |format|
       format.html {render html: '/'}
-      format.json {render json: current_user }
+      format.json {render json: @book, adapter: :json }
     end
   end
 
