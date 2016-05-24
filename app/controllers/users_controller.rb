@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+<<<<<<< HEAD
     if current_user.admin?
       @users = User.all
       respond_to do |format|
@@ -10,6 +11,10 @@ class UsersController < ApplicationController
       flash[:alert] = "Access Denied."
       redirect_to root_path
     end
+=======
+    admin_only
+    @users = User.all
+>>>>>>> 904dc45ce98123f3bf95ae1263af318541751e31
   end
 
   def show
@@ -21,24 +26,16 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if current_user.admin?
-      @user = User.find(params[:id])
-    else
-      flash[:alert] = "Access Denied."
-      redirect_to root_path
-    end
+    admin_only
+    @user = User.find(params[:id])
   end
 
   def update
-    if current_user.admin?
-      @user = User.find(params[:id])
-      @user.update(user_params)
-      flash[:notice] = "Successfully Updated #{@user.email}."
-      redirect_to admin_users_path(current_user)
-    else
-      flash[:alert] = "Access Denied."
-      redirect_to root_path
-    end
+    admin_only
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    flash[:notice] = "Successfully Updated #{@user.email}."
+    redirect_to admin_users_path(current_user)
   end
 
   def user_params

@@ -7,10 +7,13 @@
 <label>Price: </label><%= number_to_currency(@book.price.to_f/100) %>
 
 <% if user_signed_in? %>
-  <%= button_to "Buy Book", cart_books_path(book_id: @book.id) %>
+  <% if !current_user.admin? %>
+    <%= button_to "Buy Book", cart_books_path(book_id: @book.id) %>
+  <% end %>
   <% if current_user.admin? %>
-    <br>
-    <%= link_to "Edit Book", edit_book_path(@book) %>
+    <br><br>
+    <label>Inventory: </label><%= @book.inventory %><br><br>
+    <%= link_to "Edit Book", edit_book_path(@book) %><br>
     <%= link_to "Delete Book", book_path(@book), method: 'DELETE' %>
   <% end %>
 <% end %>

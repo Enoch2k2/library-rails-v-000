@@ -1,3 +1,4 @@
 <h1>Admin <%= current_user.email %></h1>
 <h3>Admin Tools</h3>
 <%= link_to "New Book", new_book_path %><br>
+<%= link_to "Book List", admin_booklist_path(current_user) %>

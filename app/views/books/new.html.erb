@@ -4,6 +4,8 @@
 
   <%= f.label "Price(don't use decimal, but include the change): " %> <%= f.text_field :price %><br><br>
 
+  <%= f.label "Inventory: " %> <%= f.text_field :inventory %><br><br>
+
   <%= f.label "Select Existing Author: " %>
   <%= f.collection_select :author_id, Author.all, :id, :name, include_blank: true %>
   <br>
