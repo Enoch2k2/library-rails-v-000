@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   def index
     if current_user.admin?
       @users = User.all
+      respond_to do |format|
+        format.html { render :index }
+        format.json {render json: @users, adapter: :json }
+      end
     else
       flash[:alert] = "Access Denied."
       redirect_to root_path
@@ -9,6 +13,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = current_user if user_signed_in?
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @user, adapter: :json }
+    end
   end
 
   def edit

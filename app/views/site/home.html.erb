@@ -5,10 +5,10 @@
 <table style="width: 50%">
   <thead>
     <tr>
-      <th style="color: red">Title</th>
-      <th style="color: blue">Author</th>
-      <th style="color: green">Genre</th>
-      <th>Price</th>
+      <td style="color: red">Title</th>
+      <td style="color: blue">Author</th>
+      <td style="color: green">Genre</th>
+      <td>Price</th>
       <% if user_signed_in? %>
       <th>Buy?</th>
       <% end %>
@@ -22,7 +22,7 @@
         <td><%= link_to book.genre.name, genre_path(book.genre) %></td>
         <td><%= number_to_currency(book.price/100) %></td>
         <% if user_signed_in? %>
-        <td><%= button_to "Add to cart", cart_books_path(book_id: book) %></td>
+        <td><button class="addCart" data-bookId="<%= book.id %>">Add To Cart</td>
         <% end %>
       </tr>
     <% end %>

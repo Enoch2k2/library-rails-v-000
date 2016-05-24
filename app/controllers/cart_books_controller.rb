@@ -5,9 +5,12 @@ class CartBooksController < ApplicationController
     current_user.current_cart.add_item(params[:book_id]).save
     current_user.current_cart.save
     current_user.save
-    book = Book.find(params[:book_id])
-    flash[:notice] = "#{book.title} added to cart."
-    redirect_to root_path
+    @book = Book.find(params[:book_id])
+    flash.now[:notice] = "#{@book.title} added to cart."
+    respond_to do |format|
+      format.html {render html: '/'}
+      format.json {render json: @book }
+    end
   end
 
   def destroy
