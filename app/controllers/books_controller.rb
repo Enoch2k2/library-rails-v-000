@@ -58,9 +58,12 @@ class BooksController < ApplicationController
   def destroy
     admin_only
     @book = Book.find(params[:id])
+    book_title = @book.title
     @book.delete
-    flash[:notice] = "#{@book.title} was successfully deleted."
-    redirect_to admin_path(current_user)
+    respond_to do |format|
+      format.html {render html: "admin/#{current_user.id}"}
+      format.json {render json: @book}
+    end
   end
 
   def book_params

@@ -1,0 +1,20 @@
+function deleteBook(){
+  $('a[data-remote=true]').on('click', function(event){
+    event.preventDefault();
+    tr = $(this).closest('tr');
+    data = {id: this.id}
+    $.ajax({
+      url: "/books/" + this.id,
+      data: data,
+      type: "DELETE"
+    }).done(function(){
+      alert("book deleted")
+      tr.remove();
+    });
+  });
+}
+
+
+$(document).ready(function(){
+  deleteBook();
+});

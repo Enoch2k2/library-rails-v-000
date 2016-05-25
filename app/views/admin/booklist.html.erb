@@ -20,7 +20,7 @@
         <td><%= number_to_currency(book.price.to_f/100) %></td>
         <td><%= book.inventory %></td>
         <td><%= link_to "Edit", edit_book_path(book) %></td>
-        <td><%= link_to "Delete", book_path(book), method: 'DELETE' %></td>
+        <td><%= link_to "Delete", book_path(book), remote: true, method: 'DELETE', id: book.id %></td>
       </tr>
     <% end %>
   </tbody>

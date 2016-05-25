@@ -1,4 +1,4 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :current_cart
+  attributes :id, :email, :current_cart, :admin
   has_many :carts
 end

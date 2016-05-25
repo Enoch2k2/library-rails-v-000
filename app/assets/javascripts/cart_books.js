@@ -1,7 +1,8 @@
-function User(id, carts, email) {
+function User(id, carts, email, admin) {
   this.id = id;
   this.carts = carts;
   this.email = email;
+  this.admin = admin;
   this.currentCart = null;
 }
 
@@ -28,7 +29,7 @@ var addToCart = function(){
       url: "/cart_books",
       dataType: "json"
     }).done(function(data) {
-      alert(data['book']['title'] + " has been added to your cart.")
+      alert(data.book.title + " has been added to your cart.")
       findUser();
     });
   });
@@ -41,7 +42,7 @@ function findUser(){
    url: "/users/" + id,
    dataType: "json"
  }).done(function(data){
-   var user = new User(data.user.id, data['user']['carts'], data['user']['email']);
+   var user = new User(data.user.id, data.user.carts, data.user.email, data.user.admin);
    user.findCurrentCart(data.user.current_cart)
    toggleCart(user);
  });

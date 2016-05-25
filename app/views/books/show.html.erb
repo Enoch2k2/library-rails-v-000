@@ -4,11 +4,11 @@
 
 <label>Genre: </label><%= link_to @book.genre.name, genre_path(@book.genre) %><br><br>
 
-<label>Price: </label><%= number_to_currency(@book.price.to_f/100) %>
+<label>Price: </label><%= number_to_currency(@book.price.to_f/100) %><br><br>
 
 <% if user_signed_in? %>
   <% if !current_user.admin? %>
-    <%= button_to "Buy Book", cart_books_path(book_id: @book.id) %>
+    <button class="addCart" data-bookId="<%= @book.id %>">Add To Cart</button>
   <% end %>
   <% if current_user.admin? %>
     <br><br>

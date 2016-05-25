@@ -22,7 +22,7 @@
         <td><%= link_to book.genre.name, genre_path(book.genre) %></td>
         <td><%= number_to_currency(book.price/100) %></td>
         <% if user_signed_in? %>
-        <td><button class="addCart" data-bookId="<%= book.id %>">Add To Cart</td>
+        <td><button class="addCart" data-bookId="<%= book.id %>">Add To Cart</button></td>
         <% end %>
       </tr>
     <% end %>
